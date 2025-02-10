@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: campeonato
+
+  datasource:
+    url: jdbc:postgresql://localhost:5442/campeonato
+    username: postgres
+    password: 1996
+    driver-class-name: org.postgresql.Driver
+  jpa:
+     hibernate:
+       ddl-auto: none  # Não alterar o esquema automaticamente
+     show-sql: true  # Exibe as queries no console
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    url: jdbc:postgresql://localhost:5442/campeonato
+    user: postgres
+    password: 1996
+    baselineOnMigrate: true
+    placeholders:
+      db: PostgreSQL
+
+server:
+  port: 8082
+  servlet:
+    context-path: /api
+  error:
+    include-stacktrace: on-param
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.flywaydb: DEBUG
+    org.springframework.jdbc: DEBUG
