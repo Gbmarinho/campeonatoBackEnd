@@ -10,5 +10,4 @@ import com.demo.campeonato.entities.PartidaEntity;
 @Repository
 public interface PartidaRepository extends JpaRepository<PartidaEntity, Integer> {
 	List<PartidaEntity> findByStadium(String stadium);
-	
 }

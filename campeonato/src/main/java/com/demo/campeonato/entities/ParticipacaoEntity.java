@@ -2,6 +2,7 @@ package com.demo.campeonato.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,10 +38,18 @@ public class ParticipacaoEntity {
     @JsonProperty(value = "red_cards")
    	private int red_cards;
 
+    @JsonProperty(value = "match_id")
+    @Column(name = "match_id", insertable = false, updatable = false)
+    private Integer matchId;
+    
     @ManyToOne
     @JoinColumn(name = "match_id", referencedColumnName = "id", nullable = false)
     @JsonProperty("partida")
     private PartidaEntity partida;
+    
+    @JsonProperty(value = "player_id")
+    @Column(name = "player_id", insertable = false, updatable = false)
+    private Integer playerId;
     
     @ManyToOne
     @JoinColumn(name = "player_id", referencedColumnName = "id", nullable = false)
