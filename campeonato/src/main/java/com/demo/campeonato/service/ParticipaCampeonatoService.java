@@ -28,4 +28,8 @@ public class ParticipaCampeonatoService {
 	public List<ParticipaCampeonatoEntity> buscarPorPlayerId (Integer clubeId) {
 		return participaCampeonatoRepository.findByClubeId(clubeId);
 	}
+	
+	public ParticipaCampeonatoEntity criarParticipaCameponato(ParticipaCampeonatoEntity participaCampeonatoEntity) {
+		return participaCampeonatoRepository.save(participaCampeonatoEntity);
+	}
 }

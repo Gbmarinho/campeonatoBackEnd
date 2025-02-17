@@ -29,4 +29,8 @@ public class jogadorService {
 		
 		return jogadorRepository.findJogadorByName(name);
 	}
+	
+	public JogadorEntity criarJogador(JogadorEntity jogadorEntity) {
+		return jogadorRepository.save(jogadorEntity);
+	}
 }

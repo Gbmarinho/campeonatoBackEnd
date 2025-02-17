@@ -28,4 +28,8 @@ public class PartidaService {
 	public List<PartidaEntity> buscarPorEstadio (String stadium) {
 		return partidaRepository.findByStadium(stadium);
 	}
+	
+	public PartidaEntity criarPartida(PartidaEntity partidaEntity) {
+		return partidaRepository.save(partidaEntity);
+	}
 }

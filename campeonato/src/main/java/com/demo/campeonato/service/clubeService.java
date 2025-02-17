@@ -22,10 +22,11 @@ public class clubeService {
 		return clubeRepository.findById(id);
 	}
 	
-	public List<ClubeEntity> buscarPorNome(String name) {
-		if(name == null) {
-			return null;
-		}
-		return clubeRepository.findByNameContainingIgnoreCase(name);
+	public List<ClubeEntity> buscarClubes(String name, String city, String country, String stadium) {
+		return clubeRepository.searchClubs(name, city, country, stadium);
+	}
+	
+	public ClubeEntity criarClube(ClubeEntity clubeEntity) {
+		return clubeRepository.save(clubeEntity);
 	}
 }

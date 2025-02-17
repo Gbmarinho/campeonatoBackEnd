@@ -1,12 +1,16 @@
 package com.demo.campeonato.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.campeonato.service.campeonatoService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import com.demo.campeonato.entities.CampeonatoEntity;
-import java.util.List;
 
 @RestController
 @RequestMapping("/campeonato")
@@ -19,18 +23,28 @@ public class campeonatoController {
     }
 	
 	@GetMapping
-	public List<CampeonatoEntity> getCampeonatosAll() {
-		return campeonatoService.buscarTodos();
+	public ResponseEntity<?> getCampeonatosAll(
+			@RequestParam(required = false) Integer id
+	) {
+		if(id != null) {
+			return ResponseEntity.ok(campeonatoService.buscarPorId(id));
+		}
+		return ResponseEntity.ok(campeonatoService.buscarTodos());
 	}
 	
 	@GetMapping("/busca")
-	public Object getCampeonatosBusca( 
-			@RequestParam(required = false) String nome
-			) {
-		
-		if(nome == null) {
-			return null;
-		}
-		return campeonatoService.buscarPorNome(nome);
+	public ResponseEntity<?> getCampeonatosBusca( 
+	        @RequestParam(required = false) String name
+	) {
+	    if (name != null) {
+	        return ResponseEntity.ok(campeonatoService.buscarPorNome(name));
+	    }
+	    
+	    return ResponseEntity.badRequest().body("É necessário informar pelo menos um parâmetro (name).");
+	}
+	
+	@PostMapping
+	public ResponseEntity<CampeonatoEntity> criacaoCampeonato(@RequestBody CampeonatoEntity campeonatoEntity){
+		return ResponseEntity.ok(campeonatoService.criarCampeonato(campeonatoEntity));
 	}
 }

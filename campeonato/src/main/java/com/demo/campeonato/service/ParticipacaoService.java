@@ -28,4 +28,8 @@ public class ParticipacaoService {
 	public List<ParticipacaoEntity> buscarPorPlayerId (Integer playerId) {
 		return participacaoRepository.findByPlayerId(playerId);
 	}
+	
+	public ParticipacaoEntity criarParticipacao(ParticipacaoEntity participacaoEntity) {
+		return participacaoRepository.save(participacaoEntity);
+	}
 }

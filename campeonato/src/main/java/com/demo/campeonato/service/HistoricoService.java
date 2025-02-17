@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
 import com.demo.campeonato.entities.HistoricoEntity;
 import com.demo.campeonato.repository.HistoricoRepository;
 
@@ -25,5 +26,9 @@ public class HistoricoService {
 	
 	public List<HistoricoEntity> buscarPorPlayerId(Integer player_id) {
 		return historicoRepository.findByPlayerId(player_id);
+	}
+	
+	public HistoricoEntity criarHistorico(HistoricoEntity historicoEntity) {
+		return historicoRepository.save(historicoEntity);
 	}
 }

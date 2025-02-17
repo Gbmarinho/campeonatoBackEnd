@@ -25,4 +25,8 @@ public class campeonatoService {
     public List<CampeonatoEntity> buscarPorNome(String name) {
         return campeonatoRepository.findByNameContainingIgnoreCase(name);
     }
+    
+    public CampeonatoEntity criarCampeonato(CampeonatoEntity campeonatoEntity) {
+    	return campeonatoRepository.save(campeonatoEntity);
+    }
 }
